@@ -52,6 +52,8 @@ that it checks for regular files. Thanks to Xin Wang for the bug report.
 Library
 -------
 
+* ADDED: New `optional` library, co-developed with Sergio Castro.
+
 * ADDED: Predicates `java::decode_exception/2-3` for decoding Java exceptions.
 
 * FIXED: Definition of the `os::file_exists/1` predicate for B-Prolog and
