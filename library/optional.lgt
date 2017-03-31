@@ -52,9 +52,9 @@
 :- object(optional(_Reference)).
 
 	:- info([
-		version is 0.1,
+		version is 0.2,
 		author is 'Sergio Castro and Paulo Moura',
-		date is 2017/03/30,
+		date is 2017/03/31,
 		comment is 'Optional predicates.',
 		parnames is ['Reference']
 	]).
@@ -66,29 +66,29 @@
 	]).
 
 	:- public(if_present/1).
-	:- meta_predicate(if_present(::)).
+	:- meta_predicate(if_present(1)).
 	:- mode(if_present(+callable), zero_or_more).
 	:- info(if_present/1, [
-		comment is 'Sends an object to an optional reference if not empty. Succeeds otherwise.',
-		argnames is ['Message']
+		comment is 'Calls a lambda expression with the optional reference as parameter if not empty. Succeeds otherwise.',
+		argnames is ['Lambda']
 	]).
 
 	:- public(get/1).
 	:- mode(get(--object_identifier), one).
 	:- info(get/1, [
-		comment is 'Returns the optional reference if not empty. Throws a resource error otherwise.',
+		comment is 'Returns the optional encapsulated object identifier if not empty. Throws a resource error otherwise.',
 		argnames is ['Object']
 	]).
 
 	is_empty :-
 		parameter(1, empty).
 
-	if_present(Message) :-
+	if_present(Lambda) :-
 		parameter(1, Reference),
 		(	Reference == empty ->
 			true
 		;	Reference = the(Object),
-			[Object::Message]
+			call(Lambda, Object)
 		).
 
 	get(Object) :-
