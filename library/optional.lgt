@@ -25,21 +25,21 @@
 		version is 0.2,
 		author is 'Sergio Castro and Paulo Moura',
 		date is 2017/03/31,
-		comment is 'Constructors for optional reference. Optional references shoud be regarded as opaque terms and always used with the optional/1 object by passing the reference as a parameter.'
+		comment is 'Constructors for optional references. Optional references shoud be regarded as opaque terms and always used with the optional/1 object by passing the reference as a parameter.'
 	]).
 
 	:- public(empty/1).
-	:- mode(empty(--optional), one).
+	:- mode(empty(--nonvar), one).
 	:- info(empty/1, [
-		comment is 'Constructs an empty optional opaque term.',
-		argnames is ['Optional']
+		comment is 'Constructs an empty optional opaque reference.',
+		argnames is ['Reference']
 	]).
 
 	:- public(of/2).
-	:- mode(of(@object_identifier, --optional), one).
+	:- mode(of(@object_identifier, --nonvar), one).
 	:- info(of/2, [
-		comment is 'Constructs an optional from an object identifier.',
-		argnames is ['Object', 'Optional']
+		comment is 'Constructs an optional reference from an object identifier.',
+		argnames is ['Object', 'Reference']
 	]).
 
 	empty(empty).
@@ -55,7 +55,7 @@
 		version is 0.2,
 		author is 'Sergio Castro and Paulo Moura',
 		date is 2017/03/31,
-		comment is 'Optional predicates.',
+		comment is 'Optional reference predicates.',
 		parnames is ['Reference']
 	]).
 
