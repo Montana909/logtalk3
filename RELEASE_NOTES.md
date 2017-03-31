@@ -66,6 +66,11 @@ Tests
 
 * ADDED: Tests to the `errors` example to check for expected compiler errors.
 
+Examples
+--------
+
+* ADDED: New example, `optionals`, of using the new `optional` library.
+
 IDEs, text editors, and syntax highlighters support
 ---------------------------------------------------
 
