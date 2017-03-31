@@ -65,12 +65,26 @@
 		comment is 'True if the optional is empty.'
 	]).
 
+	:- public(is_present/0).
+	:- mode(is_present, zero_or_one).
+	:- info(is_present/0, [
+		comment is 'True if the optional is not empty.'
+	]).
+
 	:- public(if_present/1).
 	:- meta_predicate(if_present(1)).
 	:- mode(if_present(+callable), zero_or_more).
 	:- info(if_present/1, [
 		comment is 'Calls a lambda expression with the optional reference as parameter if not empty. Succeeds otherwise.',
 		argnames is ['Lambda']
+	]).
+
+	:- public(map/2).
+	:- meta_predicate(map(2, *)).
+	:- mode(map(+callable, --nonvar), zero_or_more).
+	:- info(map/2, [
+		comment is 'Maps a lambda expression with the optional reference and a new reference as parameters.',
+		argnames is ['Lambda', 'NewReference']
 	]).
 
 	:- public(get/1).
@@ -83,6 +97,9 @@
 	is_empty :-
 		parameter(1, empty).
 
+	is_present :-
+		parameter(1, the(_)).
+
 	if_present(Lambda) :-
 		parameter(1, Reference),
 		(	Reference == empty ->
@@ -90,6 +107,14 @@
 		;	Reference = the(Object),
 			call(Lambda, Object)
 		).
+
+	map(Lambda, NewReference) :-
+		parameter(1, Reference),
+		(	Reference = the(Object),
+			call(Lambda, Object, NewObject) ->
+			NewReference = the(NewObject)
+		;	NewReference = empty
+		).		
 
 	get(Object) :-
 		parameter(1, Reference),
