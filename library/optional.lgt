@@ -22,16 +22,16 @@
 :- object(optional).
 
 	:- info([
-		version is 0.1,
+		version is 0.2,
 		author is 'Sergio Castro and Paulo Moura',
-		date is 2017/03/30,
-		comment is 'Constructors for optionals.'
+		date is 2017/03/31,
+		comment is 'Constructors for optional reference. Optional references shoud be regarded as opaque terms and always used with the optional/1 object by passing the reference as a parameter.'
 	]).
 
 	:- public(empty/1).
 	:- mode(empty(--optional), one).
 	:- info(empty/1, [
-		comment is 'Constructs an empty optional.',
+		comment is 'Constructs an empty optional opaque term.',
 		argnames is ['Optional']
 	]).
 
@@ -42,9 +42,9 @@
 		argnames is ['Object', 'Optional']
 	]).
 
-	empty(optional(empty)).
+	empty(empty).
 
-	of(Value, optional(the(Value))).
+	of(Value, the(Value)).
 
 :- end_object.
 
