@@ -54,7 +54,7 @@
 	:- info([
 		version is 0.2,
 		author is 'Sergio Castro and Paulo Moura',
-		date is 2017/03/31,
+		date is 2017/04/03,
 		comment is 'Optional reference predicates.',
 		parnames is ['Reference']
 	]).
@@ -114,14 +114,14 @@
 			call(Lambda, Object, NewObject) ->
 			NewReference = the(NewObject)
 		;	NewReference = empty
-		).		
+		).
 
 	get(Object) :-
 		parameter(1, Reference),
 		(	Reference == empty ->
 			self(Self),
 			sender(Sender),
-			throw(error(resource_error, optional, logtalk(Self::get(Object), Sender)))
+			throw(error(resource_error(optional), logtalk(Self::get(Object), Sender)))
 		;	Reference = the(Object)
 		).
 
